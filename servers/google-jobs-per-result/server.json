@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.johnisanerd/google-jobs-per-result",
+  "description": "Google Jobs listings billed per result, via the Apify Google Jobs Scraper API, hosted MCP.",
+  "version": "1.0.0",
+  "websiteUrl": "https://apify.com/johnvc/google-jobs-scraper---pay-per-result?fpr=9n7kx3&fp_sid=mcpregistry",
+  "repository": {
+    "url": "https://github.com/johnisanerd/Apify-Google-Jobs-Pay-Per-Result",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=johnvc/google-jobs-scraper---pay-per-result"
+    }
+  ]
+}

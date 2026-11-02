@@ -1,0 +1,87 @@
+name: Publish to MCP Registry
+
+on:
+  workflow_dispatch:
+    inputs:
+      server:
+        description: "Folder under servers/ to publish, for example duckduckgo"
+        required: true
+        type: string
+      dry_run:
+        description: "Run the checks only and publish nothing"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: mcp-registry-publish
+  cancel-in-progress: false
+
+env:
+  MCP_PUBLISHER_VERSION: "1.8.1"
+  REGISTRY: "https://registry.modelcontextprotocol.io"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Pre-publish checks
+        env:
+          SERVER: ${{ inputs.server }}
+        run: |
+          set -euo pipefail
+          [[ "$SERVER" =~ ^[a-z0-9-]+$ ]] || { echo "::error::server must be a folder name like duckduckgo"; exit 1; }
+          f="servers/$SERVER/server.json"
+          [ -f "$f" ] || { echo "::error::$f not found"; exit 1; }
+          name=$(jq -r .name "$f"); ver=$(jq -r .version "$f"); remote=$(jq -r '.remotes[0].url' "$f")
+          [[ "$name" == io.github.johnisanerd/* ]] || { echo "::error::$name is outside io.github.johnisanerd"; exit 1; }
+          if grep -q 'youtube-download-api' "$f"; then echo "::error::youtube-download-api is never listed"; exit 1; fi
+          len=$(jq -r '.description | length' "$f")
+          [ "$len" -le 100 ] || { echo "::error::description is $len chars, max 100"; exit 1; }
+          enc=$(jq -rn --arg n "$name" '$n|@uri')
+          code=$(curl -s -o /dev/null -w '%{http_code}' "$REGISTRY/v0.1/servers/$enc/versions/$ver")
+          [ "$code" = "404" ] || { echo "::error::$name $ver already exists (HTTP $code); bump version to change it"; exit 1; }
+          owner=$(curl -sf "$REGISTRY/v0.1/servers?search=johnisanerd&version=latest&limit=100" \
+            | jq -r --arg u "$remote" '.servers[] | select(any(.server.remotes[]?; .url == $u)) | .server.name' | head -1)
+          if [ -n "$owner" ] && [ "$owner" != "$name" ]; then echo "::error::$remote already belongs to $owner"; exit 1; fi
+          curl -sf -X POST -H 'Content-Type: application/json' --data-binary @"$f" "$REGISTRY/v0/validate" | tee validate.json
+          jq -e '.valid == true' validate.json > /dev/null
+          echo "Checks passed: $name $ver, description $len chars, remote $remote"
+
+      - name: Install mcp-publisher
+        if: ${{ !inputs.dry_run }}
+        run: |
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/download/v${MCP_PUBLISHER_VERSION}/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+          sudo mv mcp-publisher /usr/local/bin/
+
+      - name: Log in with GitHub OIDC
+        if: ${{ !inputs.dry_run }}
+        run: mcp-publisher login github-oidc
+
+      - name: Publish
+        if: ${{ !inputs.dry_run }}
+        env:
+          SERVER: ${{ inputs.server }}
+        run: |
+          cd "servers/$SERVER"
+          mcp-publisher publish
+
+      - name: Confirm live
+        if: ${{ !inputs.dry_run }}
+        env:
+          SERVER: ${{ inputs.server }}
+        run: |
+          set -euo pipefail
+          f="servers/$SERVER/server.json"
+          name=$(jq -r .name "$f"); ver=$(jq -r .version "$f")
+          enc=$(jq -rn --arg n "$name" '$n|@uri')
+          sleep 5
+          curl -sf "$REGISTRY/v0.1/servers/$enc/versions/$ver" \
+            | jq '{name: .server.name, version: .server.version, remote: .server.remotes[0].url, status: ._meta["io.modelcontextprotocol.registry/official"].status, publishedAt: ._meta["io.modelcontextprotocol.registry/official"].publishedAt}'

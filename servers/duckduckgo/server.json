@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.johnisanerd/duckduckgo",
+  "description": "DuckDuckGo search results and rank checks via the Apify DuckDuckGo Scraper, hosted MCP.",
+  "version": "1.0.0",
+  "websiteUrl": "https://apify.com/johnvc/DuckDuckGo-Scraper-for-serp-rankings?fpr=9n7kx3&fp_sid=mcpregistry",
+  "repository": {
+    "url": "https://github.com/johnisanerd/Apify-DuckDuckGo-Search-Scraper",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=johnvc/DuckDuckGo-Scraper-for-serp-rankings"
+    }
+  ]
+}

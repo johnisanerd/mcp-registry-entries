@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.johnisanerd/linkedin-post-search",
+  "description": "Search public LinkedIn posts by keyword, name or hashtag, with engagement, via a hosted MCP server.",
+  "version": "1.0.0",
+  "websiteUrl": "https://apify.com/johnvc/linkedin-post-search-api?fpr=9n7kx3&fp_sid=mcpregistry",
+  "repository": {
+    "url": "https://github.com/johnisanerd/Apify-LinkedIn-Post-Search-API",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=johnvc/linkedin-post-search-api"
+    }
+  ]
+}

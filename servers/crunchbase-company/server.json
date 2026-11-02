@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.johnisanerd/crunchbase-company",
+  "description": "Crunchbase company data as JSON: funding, investors, industry, HQ, and headcount, via hosted MCP.",
+  "version": "1.0.0",
+  "websiteUrl": "https://apify.com/johnvc/crunchbase-company-api?fpr=9n7kx3&fp_sid=mcpregistry",
+  "repository": {
+    "url": "https://github.com/johnisanerd/Apify-Crunchbase-Company-API",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=johnvc/crunchbase-company-api"
+    }
+  ]
+}

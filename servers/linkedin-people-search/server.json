@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.johnisanerd/linkedin-people-search",
+  "description": "Find LinkedIn people by name, title, company, school, or location, as profile JSON, hosted MCP.",
+  "version": "1.0.0",
+  "websiteUrl": "https://apify.com/johnvc/linkedin-people-search-api?fpr=9n7kx3&fp_sid=mcpregistry",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=johnvc/linkedin-people-search-api"
+    }
+  ]
+}

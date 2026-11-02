@@ -1,0 +1,37 @@
+name: Set MCP Registry status
+on:
+  workflow_dispatch:
+    inputs:
+      server: { description: "Registry name after io.github.johnisanerd/, e.g. apple-maps", required: true, type: string }
+      status: { description: "New status", required: true, type: choice, options: [deprecated, active] }
+      message: { description: "Status message shown in the registry", required: false, type: string, default: "" }
+permissions: { id-token: write, contents: read }
+concurrency: { group: mcp-registry-publish, cancel-in-progress: false }
+env:
+  MCP_PUBLISHER_VERSION: "1.8.1"
+  REGISTRY: "https://registry.modelcontextprotocol.io"
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the name
+        env: { SERVER: "${{ inputs.server }}" }
+        run: |
+          set -euo pipefail
+          [[ "$SERVER" =~ ^[a-z0-9-]+$ ]] || { echo "::error::bad server name"; exit 1; }
+          code=$(curl -s -o /dev/null -w '%{http_code}' "$REGISTRY/v0.1/servers/io.github.johnisanerd%2F$SERVER/versions/latest")
+          [ "$code" = "200" ] || { echo "::error::io.github.johnisanerd/$SERVER not found (HTTP $code)"; exit 1; }
+      - name: Install mcp-publisher
+        run: |
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/download/v${MCP_PUBLISHER_VERSION}/mcp-publisher_linux_amd64.tar.gz" | tar xz mcp-publisher
+          sudo mv mcp-publisher /usr/local/bin/
+      - name: Log in with GitHub OIDC
+        run: mcp-publisher login github-oidc
+      - name: Set status on every version
+        env: { SERVER: "${{ inputs.server }}", STATUS: "${{ inputs.status }}", MESSAGE: "${{ inputs.message }}" }
+        run: mcp-publisher status --status "$STATUS" --message "$MESSAGE" --all-versions --yes "io.github.johnisanerd/$SERVER"
+      - name: Confirm
+        env: { SERVER: "${{ inputs.server }}" }
+        run: |
+          sleep 5
+          curl -sf "$REGISTRY/v0.1/servers/io.github.johnisanerd%2F$SERVER/versions/latest" | jq '{name:.server.name, version:.server.version, status:._meta["io.modelcontextprotocol.registry/official"].status}'
