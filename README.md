@@ -9,3 +9,8 @@
 
 Publish about three entries a day, a few hours apart. Never list
 youtube-download-api.
+
+Each entry's `websiteUrl` points at its docs page on alphaosint.com (`/mcp/<name>/`), which lists
+the tools, parameters, outputs, client setup and prices. GitHub's MCP Registry review (Nov 2026)
+asked for that and for no affiliate links, so registry entries never carry `fpr=` and leave out
+`repository` while the linked repo READMEs still do.

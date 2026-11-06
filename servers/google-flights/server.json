@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.johnisanerd/google-flights",
+  "description": "Google Flights fares, airlines, stops and durations for any route. Paid, on Apify's hosted MCP.",
+  "version": "1.1.0",
+  "websiteUrl": "https://alphaosint.com/mcp/google-flights/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=johnvc/Google-Flights-Data-Scraper-Flight-and-Price-Search"
+    }
+  ]
+}

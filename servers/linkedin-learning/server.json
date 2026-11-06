@@ -1,13 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.johnisanerd/linkedin-learning",
-  "description": "LinkedIn Learning catalog, reviews, and syllabus as JSON via the Apify Actor, hosted MCP.",
-  "version": "1.0.0",
-  "websiteUrl": "https://apify.com/johnvc/linkedin-learning-api?fpr=9n7kx3&fp_sid=mcpregistry",
-  "repository": {
-    "url": "https://github.com/johnisanerd/Apify-LinkedIn-Learning-API",
-    "source": "github"
-  },
+  "description": "LinkedIn Learning course data: ratings, syllabus, skills. Paid, on Apify's hosted MCP.",
+  "version": "1.1.0",
+  "websiteUrl": "https://alphaosint.com/mcp/linkedin-learning/",
   "remotes": [
     {
       "type": "streamable-http",

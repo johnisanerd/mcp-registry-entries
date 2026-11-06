@@ -1,13 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.johnisanerd/youtube-shorts",
-  "description": "YouTube Shorts from any channel: views, likes, comments, and hashtags, via a hosted MCP server.",
-  "version": "1.0.0",
-  "websiteUrl": "https://apify.com/johnvc/youtube-shorts-api?fpr=9n7kx3&fp_sid=mcpregistry",
-  "repository": {
-    "url": "https://github.com/johnisanerd/Apify-YouTube-Shorts-API",
-    "source": "github"
-  },
+  "description": "YouTube Shorts from a channel with views, likes and hashtags. Paid, on Apify's hosted MCP.",
+  "version": "1.1.0",
+  "websiteUrl": "https://alphaosint.com/mcp/youtube-shorts/",
   "remotes": [
     {
       "type": "streamable-http",
