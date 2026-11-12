@@ -1,13 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.johnisanerd/workday-careers",
-  "description": "Jobs from any Workday careers site: title, location, date, pay range, and apply URL, hosted MCP.",
+  "description": "Every job on a Workday careers site, with pay and apply links. Paid, on Apify's hosted MCP.",
   "version": "1.0.0",
-  "websiteUrl": "https://apify.com/johnvc/workday-careers-api?fpr=9n7kx3&fp_sid=mcpregistry",
-  "repository": {
-    "url": "https://github.com/johnisanerd/Apify-Workday-Careers-API",
-    "source": "github"
-  },
+  "websiteUrl": "https://alphaosint.com/mcp/workday-careers/",
   "remotes": [
     {
       "type": "streamable-http",
