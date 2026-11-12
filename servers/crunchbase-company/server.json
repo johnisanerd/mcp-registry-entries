@@ -1,12 +1,13 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.johnisanerd/crunchbase-company",
-  "description": "Crunchbase company data as JSON: funding, investors, industry, HQ, and headcount, via hosted MCP.",
+  "description": "Crunchbase company funding, investors and firmographics. Paid, on Apify's hosted MCP.",
   "version": "1.0.0",
-  "websiteUrl": "https://apify.com/johnvc/crunchbase-company-api?fpr=9n7kx3&fp_sid=mcpregistry",
+  "websiteUrl": "https://alphaosint.com/mcp/crunchbase-company/",
   "repository": {
-    "url": "https://github.com/johnisanerd/Apify-Crunchbase-Company-API",
-    "source": "github"
+    "url": "https://github.com/johnisanerd/alphaosint-mcp-servers",
+    "source": "github",
+    "subfolder": "servers/crunchbase-company"
   },
   "remotes": [
     {

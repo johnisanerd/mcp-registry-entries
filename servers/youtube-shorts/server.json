@@ -2,8 +2,13 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.johnisanerd/youtube-shorts",
   "description": "YouTube Shorts from a channel with views, likes and hashtags. Paid, on Apify's hosted MCP.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "websiteUrl": "https://alphaosint.com/mcp/youtube-shorts/",
+  "repository": {
+    "url": "https://github.com/johnisanerd/alphaosint-mcp-servers",
+    "source": "github",
+    "subfolder": "servers/youtube-shorts"
+  },
   "remotes": [
     {
       "type": "streamable-http",
