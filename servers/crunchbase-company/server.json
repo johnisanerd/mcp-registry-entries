@@ -4,6 +4,11 @@
   "description": "Crunchbase company funding, investors and firmographics. Paid, on Apify's hosted MCP.",
   "version": "1.0.0",
   "websiteUrl": "https://alphaosint.com/mcp/crunchbase-company/",
+  "repository": {
+    "url": "https://github.com/johnisanerd/alphaosint-mcp-servers",
+    "source": "github",
+    "subfolder": "servers/crunchbase-company"
+  },
   "remotes": [
     {
       "type": "streamable-http",

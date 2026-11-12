@@ -2,8 +2,13 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.johnisanerd/google-scholar",
   "description": "Google Scholar papers, citations and author profiles. Paid, on Apify's hosted MCP.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "websiteUrl": "https://alphaosint.com/mcp/google-scholar/",
+  "repository": {
+    "url": "https://github.com/johnisanerd/alphaosint-mcp-servers",
+    "source": "github",
+    "subfolder": "servers/google-scholar"
+  },
   "remotes": [
     {
       "type": "streamable-http",

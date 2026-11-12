@@ -4,6 +4,11 @@
   "description": "Every job on a Workday careers site, with pay and apply links. Paid, on Apify's hosted MCP.",
   "version": "1.0.0",
   "websiteUrl": "https://alphaosint.com/mcp/workday-careers/",
+  "repository": {
+    "url": "https://github.com/johnisanerd/alphaosint-mcp-servers",
+    "source": "github",
+    "subfolder": "servers/workday-careers"
+  },
   "remotes": [
     {
       "type": "streamable-http",

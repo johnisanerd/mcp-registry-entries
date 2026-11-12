@@ -4,6 +4,11 @@
   "description": "Find LinkedIn people by name, title, employer or school. Paid, on Apify's hosted MCP.",
   "version": "1.0.0",
   "websiteUrl": "https://alphaosint.com/mcp/linkedin-people-search/",
+  "repository": {
+    "url": "https://github.com/johnisanerd/alphaosint-mcp-servers",
+    "source": "github",
+    "subfolder": "servers/linkedin-people-search"
+  },
   "remotes": [
     {
       "type": "streamable-http",
