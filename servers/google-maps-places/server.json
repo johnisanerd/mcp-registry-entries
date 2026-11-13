@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.johnisanerd/google-maps-places",
+  "description": "Google Maps places with phone, website, rating and hours. Paid, on Apify's hosted MCP.",
+  "version": "1.0.0",
+  "websiteUrl": "https://alphaosint.com/mcp/google-maps-places/",
+  "repository": {
+    "url": "https://github.com/johnisanerd/alphaosint-mcp-servers",
+    "source": "github",
+    "subfolder": "servers/google-maps-places"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.apify.com/?tools=johnvc/google-maps-places-api"
+    }
+  ]
+}
